@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .custom-input {
+    background-color: #0E0E0E;
+    height: 60px;
+    width: 496px;
+    border-radius: 4.3px;
+    padding: 21px;
+  }
+
+  @media(max-width: 768px) {
+    .custom-input {
+      background-color: #0E0E0E;
+      height: 60px;
+      width: 100%;
+      border-radius: 4.3px;
+      padding: 21px;
+    }
+  }
+
+  .customwidth {
+    width: 0;
+  }
+
+  .customwidth.active {
+    width: 100%;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,10 +46,24 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #2D2D2D;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(205, 48, 48, 0.75);
+  border-radius: 10px;
+  border: 2px solid rgba(205, 48, 48);
+}
+
+.custom-scroll::-webkit-scrollbar {
+  height: 0;
 }
