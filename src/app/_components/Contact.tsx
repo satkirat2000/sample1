@@ -72,6 +72,8 @@ const Contact = () => {
     const [formState, action] = useFormState(submitFormAction, {message: null});
 
     useEffect(() => {
+        console.log(formState);
+        
         if (formState.message !== null) {
             alert(formState.message);
         }
