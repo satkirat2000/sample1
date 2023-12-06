@@ -16,15 +16,20 @@ if (!cached) {
 }
 
 async function dbConnect() {
+    console.log("running func");
+    
     if (cached.conn) {
         return cached.conn;
     }
-
+    
     if (!cached.promise) {
         const opts = {
             bufferCommands: false
         }
+        console.log("connecting to db");
+        
         cached.promise = await mongoose.connect(MONGODB_URI, opts).then(mongoose => {
+            console.log("db connected");
             return mongoose;
         })
     }
