@@ -69,15 +69,15 @@ const Contact = () => {
     //     setCurrentInput({name: name, value: value});
     // }
 
-    const [formState, action] = useFormState(submitFormAction, {message: null});
+    // const [formState, action] = useFormState(submitFormAction, {message: null});
 
-    useEffect(() => {
-        console.log(formState);
+    // useEffect(() => {
+    //     console.log(formState);
         
-        if (formState.message !== null) {
-            alert(formState.message);
-        }
-    }, [formState]);
+    //     if (formState.message !== null) {
+    //         alert(formState.message);
+    //     }
+    // }, [formState]);
     
     return (
         <div className="overflow-hidden">
@@ -99,7 +99,7 @@ const Contact = () => {
                 </h1>
                 <div className="flex flex-col md:flex-row">
                     <div className="md:w-[50%]">
-                        <form className="flex flex-col gap-[18px]" action={action}>
+                        <form className="flex flex-col gap-[18px]" action={submitFormAction}>
                             <input
                                 required
                                 className="custom-input"
