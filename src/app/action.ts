@@ -3,9 +3,10 @@
 import mongoDBConnection from "../../lib/dbConnect";
 import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
-mongoDBConnection();
 
-export async function submitFormAction(formData: FormData) {
+export async function submitFormAction(prevState: any, formData: FormData) {
+    await mongoDBConnection();
+
     const name = formData.get("name");
     const email = formData.get("email");
     const phoneNumber = formData.get("phoneNumber");
