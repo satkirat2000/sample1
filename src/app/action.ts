@@ -1,13 +1,13 @@
 'use server';
 
-import mongoDBConnection from "../../lib/dbConnect";
+import dbConnect from "../../lib/dbConnect";
 import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 
 export async function submitFormAction(formData: FormData) {
     console.log("Not connected");
 
-    await mongoDBConnection();
+    await dbConnect();
     console.log("connected");
     
 
@@ -17,14 +17,13 @@ export async function submitFormAction(formData: FormData) {
     const message = formData.get("message")
     
     try {
-        // await ContactFormModel.create<ContactForm>({
-        //     name: name,
-        //     email: email,
-        //     phoneNumber: phoneNumber,
-        //     message: message
-        // });
+        await ContactFormModel.create<ContactForm>({
+            name: name,
+            email: email,
+            phoneNumber: phoneNumber,
+            message: message
+        });
         console.log(name, email, phoneNumber, message);
-        
 
         return {message: "Submitted Successfully"};
     } catch (error) {   
