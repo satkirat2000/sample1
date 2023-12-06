@@ -4,7 +4,7 @@ import mongoDBConnection from "../../lib/dbConnect";
 import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 
-export async function submitFormAction(prevState: any, formData: FormData) {
+export async function submitFormAction(formData: FormData) {
     await mongoDBConnection();
 
     const name = formData.get("name");
@@ -28,4 +28,4 @@ export async function submitFormAction(prevState: any, formData: FormData) {
         return {message: error}
     }
 
-}
+}   

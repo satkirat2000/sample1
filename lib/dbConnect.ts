@@ -21,7 +21,10 @@ async function mongoDBConnection() {
     }
 
     if (!cached.promise) {
-        cached.promise = await mongoose.connect(MONGODB_URI).then(mongoose => {
+        const opts = {
+            bufferCommands: false
+        }
+        cached.promise = await mongoose.connect(MONGODB_URI, opts).then(mongoose => {
             return mongoose;
         })
     }
