@@ -1,15 +1,11 @@
 'use server';
 
-import dbConnect from "../../lib/dbConnect";
+import mongoDBConnection from "../../lib/dbConnect";
 import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 
-export async function submitFormAction(formData: FormData) {
-    console.log("Not connected");
-
-    await dbConnect();
-    console.log("connected");
-    
+export async function submitFormAction(prevState: any, formData: FormData) {
+    await mongoDBConnection();
 
     const name = formData.get("name");
     const email = formData.get("email");
@@ -24,6 +20,7 @@ export async function submitFormAction(formData: FormData) {
             message: message
         });
         console.log(name, email, phoneNumber, message);
+        
 
         return {message: "Submitted Successfully"};
     } catch (error) {   
@@ -31,4 +28,4 @@ export async function submitFormAction(formData: FormData) {
         return {message: error}
     }
 
-}   
+}
