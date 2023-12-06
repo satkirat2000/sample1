@@ -5,11 +5,7 @@ import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 
 export async function submitFormAction(prevState: any, formData: FormData) {
-    console.log("Connecting to DB in S Action");
-    
     await mongoDBConnection();
-    console.log("Connected to DB in S Action");
-
 
     const name = formData.get("name");
     const email = formData.get("email");

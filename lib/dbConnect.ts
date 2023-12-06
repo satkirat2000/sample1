@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 declare global {
     var mongoose: any
 }
@@ -16,29 +16,20 @@ if (!cached) {
 }
 
 async function dbConnect() {
-    console.log("running func");
-    
     if (cached.conn) {
         return cached.conn;
     }
-    
+
     if (!cached.promise) {
         const opts = {
             bufferCommands: false
         }
-        console.log("connecting to db");
-
-        cached.promise = await mongoose.connect("23", opts).then(mongoose => {
-            console.log(mongoose, "kuch bhi");
+        cached.promise = await mongoose.connect(MONGODB_URI, opts).then(mongoose => {
             return mongoose;
-        }).catch(err => {
-            console.log(err);
         })
     }
     try {
         cached.conn = await cached.promise       
-        console.log("cached db conn");
-        
     } catch (error) {
         cached.promise = null;
         throw error;
