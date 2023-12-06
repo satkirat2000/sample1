@@ -6,6 +6,8 @@ import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 export async function submitFormAction(formData: FormData) {
     await mongoDBConnection();
+    console.log("connected");
+    
 
     const name = formData.get("name");
     const email = formData.get("email");
@@ -13,12 +15,12 @@ export async function submitFormAction(formData: FormData) {
     const message = formData.get("message")
     
     try {
-        await ContactFormModel.create<ContactForm>({
-            name: name,
-            email: email,
-            phoneNumber: phoneNumber,
-            message: message
-        });
+        // await ContactFormModel.create<ContactForm>({
+        //     name: name,
+        //     email: email,
+        //     phoneNumber: phoneNumber,
+        //     message: message
+        // });
         console.log(name, email, phoneNumber, message);
         
 
