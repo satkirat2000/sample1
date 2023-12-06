@@ -5,6 +5,8 @@ import ContactFormModel, { ContactForm } from "../../models/ContactForm";
 
 
 export async function submitFormAction(formData: FormData) {
+    console.log("Not connected");
+
     await mongoDBConnection();
     console.log("connected");
     
