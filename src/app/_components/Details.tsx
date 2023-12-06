@@ -5,7 +5,7 @@ export interface DetailsProps {
     title: string,
     description: string,
     image: string,
-    reversed?: string
+    reversed?: boolean
 }
 
 const Details = () => {
@@ -26,7 +26,6 @@ const Details = () => {
             PJ ou CLT por nós e alocado dentro do escritório do cliente;
             PJ ou CLT por nós e atuando em nosso escritório com demandas do cliente;`,
             image: `/Details/Outsourcing.png`,
-            reversed: "flex-row-reverse"
         },
         {
             title: `Sustentação de sistemas <span style="color: #FA002D;">legados</span> e <span style="color: #FA002D;">aplicativos</span>`,
@@ -38,14 +37,13 @@ const Details = () => {
             description: `Buscamos profissionais no mercado de trabalho para os nossos clientes contratarem internamente. O profissional passa por uma seleção, testes e avaliações para identificar se o perfil do candidato é compatível com o perfil da vaga de nossos clientes. O profissional pode ser contratado da seguinte maneira:
             PJ ou CLT vinculado ao cliente, e atuando dentro das dependências do cliente;`,
             image: "/Details/hunting.png",
-            reversed: "flex-row-reverse"
         }
     ]
 
     return (
         <div className="p-[50px] px-[20px] md:px-[150px]">
             {
-                detailsCardData.map((item, index) => (<DetailsCard key={index} title={item.title} description={item.description} image={item.image} reversed={item.reversed} />))
+                detailsCardData.map((item, index) => (<DetailsCard key={index} title={item.title} description={item.description} image={item.image} reversed={index%2 === 0 ? true : false} />))
             }
         </div>
     );

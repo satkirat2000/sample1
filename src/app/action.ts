@@ -19,8 +19,6 @@ export async function submitFormAction(prevState: any, formData: FormData) {
             phoneNumber: phoneNumber,
             message: message
         });
-        console.log(name, email, phoneNumber, message);
-        
 
         return {message: "Submitted Successfully"};
     } catch (error) {   

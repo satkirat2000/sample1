@@ -21,12 +21,12 @@ export interface IContactCard {
 
 const Contact = () => {
 
-    // const [contactDetails, setContactDetails] = useState<ContactForm>({
-    //     name: "",
-    //     email: "",
-    //     phoneNumber: "",
-    //     message: "",
-    // });
+    const [contactDetails, setContactDetails] = useState<ContactForm>({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        message: "",
+    });
 
     // const [currentInput, setCurrentInput] = useState<{name: string, value: string}>({
     //     name: "",
@@ -62,12 +62,20 @@ const Contact = () => {
     //     return () => clearTimeout(handleError);
     // }, [currentInput]);
 
-    // const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //     const {name, value} = e.target;
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const {name, value} = e.target;
 
-    //     setContactDetails(old => ({...old, [name]: value}));
-    //     setCurrentInput({name: name, value: value});
-    // }
+        setContactDetails(old => ({...old, [name]: value}));
+    }
+
+    const handleSubmit = () => {
+        setContactDetails({
+            name: "",
+            email: "",
+            phoneNumber: "",
+            message: ""
+        })
+    }
 
     const [formState, action] = useFormState(submitFormAction, {message: null});
 
@@ -99,8 +107,13 @@ const Contact = () => {
                 </h1>
                 <div className="flex flex-col md:flex-row">
                     <div className="md:w-[50%]">
-                        <form className="flex flex-col gap-[18px]" action={action}>
+                        <form className="flex flex-col gap-[18px]" action={async (formData) => {
+                            await action(formData);
+                            handleSubmit();
+                        }}>
                             <input
+                                value={contactDetails.name}
+                                onChange={handleInput}
                                 required
                                 className="custom-input"
                                 placeholder="Name"
@@ -109,6 +122,8 @@ const Contact = () => {
                                 // onChange={handleInput}
                             />
                             <input
+                                value={contactDetails.email}
+                                onChange={handleInput}
                                 required
                                 className="custom-input"
                                 placeholder="Email"
@@ -118,6 +133,8 @@ const Contact = () => {
 
                             />
                             <input
+                                value={contactDetails.phoneNumber}
+                                onChange={handleInput}
                                 required
                                 className="custom-input"
                                 placeholder="Phone Number"
@@ -129,6 +146,8 @@ const Contact = () => {
                                 title="Number should be of 10 digits."
                             />
                             <textarea
+                                value={contactDetails.message}
+                                onChange={handleInput}
                                 required
                                 className="bg-[#0E0E0E] p-[21px] w-[100%] md:w-[496px] h-[218px] rounded-[4.3px] resize-none"
                                 placeholder="Your message"
