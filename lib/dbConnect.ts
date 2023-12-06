@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 declare global {
     var mongoose: any
 }
@@ -29,14 +29,18 @@ async function dbConnect() {
         console.log("connecting to db");
         try {
             cached.promise = await mongoose.connect(MONGODB_URI, opts).then(mongoose => {
+                console.log(mongoose, "kuch bhi");
+                
                 return mongoose;
             })
         } catch (error) {
-            console.log(error);
+            console.log(error, "db conn error");
         }
     }
     try {
         cached.conn = await cached.promise       
+        console.log("cached db conn");
+        
     } catch (error) {
         cached.promise = null;
         throw error;
